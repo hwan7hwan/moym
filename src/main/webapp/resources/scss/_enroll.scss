@@ -1,0 +1,77 @@
+/*======================================
+    Enroll Section CSS
+========================================*/
+
+.enroll-section {
+    background: $black;
+
+    img {
+        width: 100%;
+    }
+
+    .enroll {
+        padding: 60px;
+        background: $theme-color;
+        margin-left: 50px;
+
+        .inner-title {
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 50px;
+            color: $white;
+            display: block;
+            margin-bottom: 30px;
+        }
+
+        .form {
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            input {
+                height: 50px;
+                border: none;
+                width: 100%;
+                background: $white;
+                color: $black;
+                padding: 0px 20px;
+            }
+
+            .form-control {
+                height: 50px;
+                border: none;
+                width: 100%;
+                background: $white;
+                color: $black;
+                padding: 0px 20px;
+                border-radius: 0;
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+            textarea {
+                height: 200px;
+                border: 2px solid #eee;
+                width: 100%;
+                background: $white;
+                color: $black;
+                padding: 20px;
+            }
+
+            .button {
+                .btn {
+                    width: 100%;
+                    display: block;
+
+                    &::before {
+                        background: $white;
+                    }
+
+                    &:hover {
+                        color: $black;
+                    }
+                }
+            }
+        }
+    }
+}

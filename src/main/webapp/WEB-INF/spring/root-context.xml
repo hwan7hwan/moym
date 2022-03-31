@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- it's for oracle 
+		<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+			<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+			<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE"></property>
+			
+			<property name="username" value="c##moymdb"></property>
+			<property name="password" value="moymdb"></property>
+		
+		</bean>
+	 -->	
+	 
+	 <!--  It's for mySQL  -->
+	 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+ 		<!-- 	<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property> 
+			<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/moymdb?serverTimezone=Asia/Seoul"></property> -->
+			<property name="driverClassName" value="org.mariadb.jdbc.Driver"></property>
+
+			<!-- <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property> -->
+			<property name="jdbcUrl" value="jdbc:mariadb://khh1888.cafe24.com:3306/khh1888?serverTimezone=Asia/Seoul"></property>
+			<property name="username" value="khh1888"></property>
+			<property name="password" value="moym1354!"></property>
+		</bean>	
+	
+		
+		
+		
+		
+		
+		
+		
+		<!-- HikariCP Configuration -->
+		<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<constructor-arg ref="hikariConfig" />
+		</bean>
+		
+		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource"></property>
+		</bean>
+		
+		    <!-- navermail설정 -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
+     <property name="host" value="smtp.gmail.com"/> <!-- mail server host -->
+     <property name="port" value="465"/> <!-- mail server port number -->
+     <property name="username" value="khyeonghwan@gmail.com"/> <!-- your email id -->
+     <property name="password" value="gcfmeweitkurtagy"/> <!-- the password -->
+       <!-- 보안연결 SSL과 관련된 설정 -->
+     <property name="javaMailProperties">
+      <props>
+      <prop key="mail.smtp.auth">true</prop>
+      <prop key="mail.smtp.starttls.enable">true</prop>
+      <prop key="mail.smtps.checkserveridentity">true</prop>
+      <prop key="mail.smtps.ssl.trust">*</prop>
+      <prop key="mail.smtp.ssl.enable">true</prop>
+      <prop key="mail.debug">true</prop>
+      <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+      <prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+      </props>
+     </property>
+    </bean>
+		
+		
+		
+		
+		
+		
+		
+		<mybatis-spring:scan base-package="org.moym.mapper"/>
+		
+		<context:component-scan base-package="org.moym.service">
+		</context:component-scan>
+		
+		<context:component-scan base-package="org.moym.task"></context:component-scan>
+		
+		<task:annotation-driven/>
+	
+	
+		
+</beans>

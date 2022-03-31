@@ -1,0 +1,92 @@
+/*======================================
+    Login CSS
+========================================*/
+.login {
+    .form-head {
+        padding: 50px;
+        box-shadow: 0px 0px 50px #00000014;
+
+        .title {
+            font-size: 30px;
+            line-height: 1.42;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        form {
+            .form-group {
+                margin-bottom: 25px;
+
+                label {
+                    display: block;
+                    margin-bottom: .5rem;
+                    color: $black;
+                    font-size: 13px;
+                    font-weight: 500;
+                }
+
+                input {
+                    width: 100%;
+                    min-height: 56px;
+                    padding: 3px 20px;
+                    color: $black;
+                    border: 1px solid #f5f5f5;
+                    border-radius: 0;
+                    outline: 0;
+                    background-color: #f5f5f5;
+                }
+            }
+
+            .check-and-pass {
+
+                .form-check {
+                    float: left;
+
+                    input {
+                        cursor: pointer;
+                    }
+
+                    label {
+                        cursor: pointer;
+                    }
+                }
+
+                .lost-pass {
+                    float: right;
+                    color: #777;
+                    position: relative;
+                    top: -2px;
+
+                    &:hover {
+                        color: $theme-color;
+                    }
+                }
+            }
+
+            .button {
+                margin-top: 25px;
+
+                .btn {
+                    width: 100%;
+                }
+            }
+
+            .outer-link {
+                display: block;
+                font-size: 13px;
+                font-weight: 500;
+                color: $black;
+                margin-top: 20px;
+                text-align: center;
+
+                a {
+                    color: $theme-color;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}

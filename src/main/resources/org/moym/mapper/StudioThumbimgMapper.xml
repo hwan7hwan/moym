@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.moym.mapper.StudioThumbimgMapper">
+
+<insert id="insert">
+	insert into tbl_studio_thumbimg (uuid, uploadpath, filename, filetype, bno) 
+	values (#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{bno})
+</insert>
+
+<delete id="delete">
+	delete from tbl_studio_thumbimg where uuid = #{uuid}
+</delete>
+
+<select id="findByBno" resultType="org.moym.domain.BoardAttachVO">
+	select * from tbl_studio_thumbimg where bno = #{bno}
+</select>
+<select id="findByBno2" resultType="org.moym.domain.BoardAttachVO">
+	select * from tbl_studio_thumbimg where bno = #{bno}
+</select>
+
+<delete id="deleteAll">
+	delete from tbl_studio_thumbimg where bno = #{bno}
+</delete>
+
+<select id="getOldFiles" resultType="org.moym.domain.BoardAttachVO">
+
+	<!-- select * from tbl_studio_thumbimg where uploadpath = to_char(sysdate -1, 'yyyy\mm\dd') -->
+	select * from tbl_studio_thumbimg where uploadpath = DATE_FORMAT(now() -1, 'yyyy\mm\dd')
+	
+</select>
+
+
+</mapper>

@@ -1,0 +1,136 @@
+/*======================================
+    CTA CSS
+========================================*/
+
+.call-action {
+    background-image: url('https://via.placeholder.com/1920x1280');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: 5;
+
+    &.style2 {
+        background-color: $theme-color;
+
+        .call-content {
+            text-align: left;
+            padding: 0;
+
+            h2 {
+                color: $white;
+            }
+
+            .button {
+                float: right;
+                margin: 0;
+
+                .btn {
+                    background-color: $white;
+                    color: $black;
+                }
+            }
+        }
+    }
+
+    &.overlay::before {
+        background: $theme-color;
+        opacity: 0.95;
+    }
+
+    .call-content {
+        text-align: center;
+        padding: 0px 100px;
+
+        span {
+            color: $white;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: $white;
+            display: block;
+            margin-bottom: 25px;
+        }
+
+        p {
+            color: $white;
+        }
+
+        .button {
+            margin-top: 40px;
+
+            .btn {
+                background-color: $white;
+                color: $black;
+
+                &::before {
+                    background-color: $black;
+                    width: 0;
+                }
+
+                &:hover::before {
+                    width: 100%;
+                }
+
+                &:hover {
+                    color: $white;
+                }
+            }
+        }
+    }
+}
+
+.cta-mini {
+    text-align: center;
+    padding: 0px 50px;
+    padding-top: 50px;
+
+    p {
+        font-size: 16px;
+        line-height: 32px;
+        font-weight: 400;
+
+        a {
+            color: $theme-color;
+            display: inline-block;
+            margin-left: 5px;
+            position: relative;
+            font-weight: 500;
+            padding: 2px 15px;
+            z-index: 1;
+            font-size: 14px;
+            border: 1px solid #eee;
+
+            &::before {
+                position: absolute;
+                content: "";
+                left: 0;
+                bottom: 0;
+                height: 100%;
+                width: 0%;
+                background: $theme-color;
+                z-index: -1;
+                transition: all 0.4s ease-in-out;
+            }
+
+            &:hover {
+                color: $white;
+                border-color: transparent;
+
+                &::before {
+                    width: 100%;
+                }
+            }
+
+            i {
+                display: inline-block;
+                margin-left: 5px;
+            }
+        }
+    }
+}

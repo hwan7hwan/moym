@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.moym.mapper.StorageBoardMapper">
+
+<select id="getList" resultType="org.moym.domain.BoardVO">
+	<![CDATA[select * from tbl_storage where bno > 0]]>
+
+</select>
+
+<insert id="insert">
+	insert into tbl_storage (title,content,writer,category,ytlink,filecallpath,quocon,quofrom) 
+	values (#{title}, #{content}, #{writer}, #{category}, #{ytlink},#{fileCallPath},#{quocon},#{quofrom})
+</insert>
+
+<!-- 
+<insert id="insertSelectKey">
+	<selectKey keyProperty="bno" order="BEFORE" resultType="long">
+		select MAX(bno) + 1 from tbl_storage
+	</selectKey>
+	insert into tbl_storage (bno,title,content,writer,category,ytlink) values (#{bno}, #{title}, #{content}, #{writer}, #{category},#{ytlink})
+</insert>
+ -->
+  <insert id="insertSelectKey">
+	<selectKey keyProperty="bno" order="AFTER" resultType="long">
+		select MAX(bno) from tbl_storage
+	</selectKey>
+	insert into tbl_storage (bno,title,content,writer,category,ytlink,quocon,quofrom) values (#{bno}, #{title}, #{content}, #{writer}, #{category}, #{ytlink},#{quocon},#{quofrom})
+</insert>
+
+
+
+<select id="read" resultType="org.moym.domain.BoardVO">
+	select * from tbl_storage where bno = #{bno}
+</select>
+
+<delete id="delete">
+	delete from tbl_storage where bno = #{bno}
+</delete>
+
+
+<update id="update">
+	update tbl_storage set title=#{title}, content=#{content}, writer=#{writer}, category=#{category}, ytlink=#{ytlink},quocon=#{quocon},quofrom=#{quofrom},
+	 updateDate= now() where bno = #{bno}
+</update>
+
+<!-- 검색에의한 목록과 데이터 개수 처리를 위한 sql태그 -->
+<sql id="criteria">
+	<trim prefix="where (" suffix=")" prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'A'.toString()">
+							title like concat('%',#{keyword},'%') OR content like concat('%',#{keyword},'%')
+						</when>
+						<when test="type == 'W'.toString()">
+							category='songwriting' AND (title like concat('%',#{keyword},'%') OR content like concat('%',#{keyword},'%'))
+						</when>
+						<when test="type == 'F'.toString()">
+							category='freesounds' AND (title like concat('%',#{keyword},'%') OR content like concat('%',#{keyword},'%'))
+						</when>
+						<when test="type == 'U'.toString()">
+							category='usefulapps' AND (title like concat('%',#{keyword},'%') OR content like concat('%',#{keyword},'%'))
+						</when>
+						<when test="type == 'S'.toString()">
+							category='stuffs' AND (title like concat('%',#{keyword},'%') OR content like concat('%',#{keyword},'%'))
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+</sql>
+
+<!--  페이징 처리를 위한 쿼리 -->
+<select id="getListWithPaging" resultType="org.moym.domain.BoardVO">
+
+	<!-- MySQL-->
+	select * from (
+                select bno, title, content, writer, category, regdate, updatedate, replycnt, pageinfo, viewcnt, ytlink, filecallpath,quocon,quofrom 
+                from tbl_storage 
+                <if test="keyword != null">
+                    <include refid="criteria"></include>
+                </if>
+                ) as T1 order by bno desc
+        limit #{skip},#{amount}
+        
+	
+</select>
+
+<select id="getTotalCount" resultType="int">
+	select count(*) from tbl_storage 
+	<if test="keyword != null">
+         <include refid="criteria"></include>
+    </if>  
+	
+</select>
+
+ 
+<update id="updateReplyCnt">
+	update tbl_storage set replycnt = replycnt + #{amount} where bno = #{bno}
+</update>
+
+<update id="updateViewCnt">
+	update tbl_storage set viewcnt = viewcnt + 1 where bno = #{bno}
+</update>
+
+<update id="updateFileCallPath">
+	update tbl_storage set filecallpath = #{fileCallPath} where bno = #{bno}
+</update>
+
+<!--
+<update id="updateReplyCnt">
+	update tbl_storage set replycnt = (select count(rno) from tbl_storage_reply where tbl_storage_reply.bno = tbl_storage.bno);
+</update>
+ -->
+
+
+
+
+
+
+
+
+</mapper>

@@ -1,0 +1,151 @@
+/*======================================
+    Newsletter CSS
+========================================*/
+.newsletter-area {
+    &.style2 {
+        .newsletter-title {
+            i {
+                height: 70px;
+                width: 70px;
+                line-height: 70px;
+                text-align: center;
+                display: inline-block;
+                margin-bottom: 20px;
+                color: $white;
+                background-color: $theme-color;
+                border-radius: 50%;
+                font-size: 30px;
+            }
+        }
+
+        .subscribe-text {
+            form {
+                position: relative;
+                width: 100%;
+                padding: 0px 50px;
+
+                input {
+                    width: 100% !important;
+                    height: 70px;
+                    padding-right: 165px;
+                }
+
+                .button {
+                    position: absolute;
+                    right: 60px;
+                    top: 10px;
+
+                    .btn {}
+                }
+            }
+        }
+    }
+
+    background-color: $white;
+    text-align: center;
+
+    .newsletter-title {
+        span {
+            color: $black;
+            font-size: 14px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            color: $black;
+            font-size: 36px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 14px;
+
+        }
+    }
+
+    .subscribe-text {
+        margin-top: 40px;
+        display: block;
+
+        form {
+            display: inline-block;
+            text-align: center;
+        }
+
+        input {
+            height: 50px;
+            width: 300px;
+            border: none;
+            background-color: $white;
+            border: 1px solid #eee;
+            color: $black;
+            border-radius: 0;
+            padding: 0px 30px;
+            display: block;
+            text-align: center;
+            display: inline-block;
+            font-weight: 500;
+            text-align: left;
+        }
+
+        .button {
+            display: inline-block;
+            position: relative;
+            top: -2px;
+
+            .btn {
+                height: 50px;
+                width: auto;
+                display: inline-block;
+                border: none;
+                background: $theme-color;
+                color: $white;
+                margin-left: 10px;
+
+                &:hover {
+                    color: $white;
+
+                    &::before {
+                        background-color: $black;
+                    }
+                }
+            }
+        }
+
+        .newsletter-social {
+            margin-top: 50px;
+
+            li {
+                display: inline-block;
+                margin-right: 5px;
+
+
+                &:last-child {
+                    margin: 0;
+                }
+
+                a {
+                    height: 40px;
+                    width: 40px;
+                    line-height: 40px;
+                    text-align: center;
+                    font-size: 12px;
+                    border: 1px solid #eee;
+                    border-radius: 50%;
+                    color: $black;
+                    background-color: $gray;
+
+                    &:hover {
+                        border-color: transparent;
+                        color: $white;
+                        background-color: $theme-color;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,133 @@
+/*======================================
+    Faq CSS
+========================================*/
+.faq {
+    .nav-tabs {
+        border: none;
+        background: $gray;
+
+        margin-bottom: 50px;
+
+        .nav-link {
+            padding: 15px 30px;
+            border: none;
+            background: transparent;
+            background-color: transparent;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            border-radius: 0;
+            margin-right: 5px;
+            position: relative;
+
+            &::before {
+                position: absolute;
+                content: "";
+                left: 50%;
+                margin-left: -10px;
+                bottom: -14px;
+                border: 10px solid $theme-color;
+                border-bottom-color: transparent;
+                border-right-color: transparent;
+                border-left-color: transparent;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.4s ease;
+            }
+
+            &.active:before {
+                bottom: -19px;
+                opacity: 1;
+                visibility: visible;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &.active {
+                color: $white;
+                background: $theme-color;
+            }
+
+            &:hover {
+                color: $white;
+                background: $theme-color;
+            }
+        }
+    }
+}
+
+.accordion-item .accordion-button {
+    border-radius: 0px;
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    border: none;
+    border: 1px solid #eee;
+
+    span {
+        float: left;
+    }
+
+    i {
+        float: right;
+        font-size: 13px;
+        transition: all 0.3s ease;
+    }
+}
+
+.accordion-item .accordion-button:focus {
+    outline: none !important;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #fff;
+    background-color: $theme-color;
+    border-color: transparent;
+    border-radius: 0;
+
+    i {
+        transform: rotate(180deg);
+    }
+}
+
+.accordion-item:first-of-type .accordion-button {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.accordion-item:last-of-type .accordion-button.collapsed {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.accordion-button::after {
+    display: none;
+}
+
+.accordion-collapse {
+    border: none;
+}
+
+.accordion-body {
+    border: 1px solid #eee;
+    border-radius: 0;
+    padding: 30px 20px;
+
+    p {
+        margin: 0;
+        margin-bottom: 20px;
+        font-size: 14px;
+
+        &:last-child {
+            margin: 0;
+        }
+    }
+}
+
+.accordion-item {
+    margin-bottom: 20px;
+}

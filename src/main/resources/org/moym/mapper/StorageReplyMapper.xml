@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.moym.mapper.StorageReplyMapper">
+
+	<insert id="insert">
+		
+		insert into tbl_storage_reply (bno, reply, replyer)
+		values (#{bno}, #{reply}, #{replyer})
+	
+	</insert>
+	
+	<select id="read" resultType="org.moym.domain.ReplyVO">
+		select * from tbl_storage_reply where rno = #{rno}
+	</select>
+
+	<delete id="delete">
+		delete from tbl_storage_reply where rno = #{rno}
+	</delete>
+
+	<update id="update">
+		update tbl_storage_reply set reply = #{reply}, updatedate = now() where rno = #{rno}
+	</update>
+	
+	<delete id="deleteAll">
+		delete from tbl_storage_reply where bno = #{bno}
+	</delete>
+	
+	
+	
+	
+	<!--  페이징 처리를 위한 쿼리 -->
+<select id="getListWithPaging" resultType="org.moym.domain.ReplyVO">
+
+	select rno, bno, reply, replyer, replydate, updatedate, rereplyCnt
+		from tbl_storage_reply
+		where bno = #{bno}
+		order by replydate desc  		
+  		limit #{cri.skip}, #{cri.amount}
+  		
+	
+</select>
+	
+	<select id="getCountByBno" resultType="int">
+	<![CDATA[
+	select count(rno) from tbl_storage_reply where bno = #{bno}
+	]]>
+</select>
+	
+	
+<select id="getTotalCount" resultType="int">
+	select count(*) from tbl_storage_reply
+	
+</select>
+	
+	
+<update id="updateRereplyCnt">
+	update tbl_storage_reply set rereplycnt = rereplycnt + #{amount} where rno = #{rno}
+</update>
+	
+	
+	
+
+</mapper>

@@ -1,0 +1,108 @@
+/*======================================
+    Work Process CSS
+========================================*/
+.work-process {
+    background: $black;
+
+
+    .section-title {
+        padding: 0;
+
+        h2 {
+            color: $white;
+        }
+
+        p {
+            color: $white;
+        }
+    }
+
+
+    .list {
+
+        li {
+            position: relative;
+            padding-top: 90px;
+            text-align: center;
+            margin-top: 30px;
+            display: block;
+
+            .serial {
+                height: 60px;
+                width: 60px;
+                line-height: 60px;
+                color: $black;
+                font-size: 20px;
+                font-weight: 700;
+                text-align: center;
+                border-radius: 50%;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                margin-left: -30px;
+                background-color: $white;
+                transition: all 0.4s ease-in-out;
+            }
+
+            .content {
+                background-color: $white;
+                padding: 40px;
+                border-radius: 10px;
+                position: relative;
+                transition: all 0.4s ease-in-out;
+
+                &::before {
+                    position: absolute;
+                    content: "";
+                    border: 10px solid $white;
+                    border-right-color: transparent;
+                    border-top-color: transparent;
+                    border-left-color: transparent;
+                    left: 50%;
+                    top: -20px;
+                    margin-left: -10px;
+                    transition: all 0.4s ease-in-out;
+                }
+
+                span {
+                    font-size: 18px;
+                    font-weight: 600;
+                    display: block;
+                    margin-bottom: 10px;
+                    color: $black;
+                    transition: all 0.4s ease-in-out;
+                }
+            }
+
+            &:hover {
+                .serial {
+                    background-color: $theme-color;
+                    color: $white;
+                }
+
+                .content {
+                    background: $theme-color;
+                    color: $white;
+
+                    &::before {
+                        position: absolute;
+                        content: "";
+                        border: 10px solid $theme-color;
+                        border-right-color: transparent;
+                        border-top-color: transparent;
+                        border-left-color: transparent;
+                        left: 50%;
+                        top: -20px;
+                        margin-left: -10px;
+                        transition: all 0.4s ease-in-out;
+                    }
+
+                    span {
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+
+}

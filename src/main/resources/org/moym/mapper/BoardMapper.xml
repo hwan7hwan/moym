@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.moym.mapper.BoardMapper">
+
+<select id="getList" resultType="org.moym.domain.BoardVO">
+	<![CDATA[select * from tbl_cafe where bno > 0]]>
+
+</select>
+
+<insert id="insert">
+	insert into tbl_cafe (title,content,writer,category) values (#{title}, #{content}, #{writer}, #{category})
+</insert>
+
+<!-- 
+<insert id="insertSelectKey">
+	<selectKey keyProperty="bno" order="BEFORE" resultType="long">
+		select MAX(bno) + 1 from tbl_cafe
+	</selectKey>
+	insert into tbl_cafe (bno,title,content,writer,category) values (#{bno}, #{title}, #{content}, #{writer}, #{category})
+</insert>
+ -->
+  <insert id="insertSelectKey">
+	<selectKey keyProperty="bno" order="AFTER" resultType="long">
+		select MAX(bno) from tbl_cafe
+	</selectKey>
+	insert into tbl_cafe (bno,title,content,writer,category) values (#{bno}, #{title}, #{content}, #{writer}, #{category})
+</insert>
+
+
+
+<select id="read" resultType="org.moym.domain.BoardVO">
+	select * from tbl_cafe where bno = #{bno}
+</select>
+
+<delete id="delete">
+	delete from tbl_cafe where bno = #{bno}
+</delete>
+
+
+<update id="update">
+	update tbl_cafe set title=#{title}, content=#{content}, writer=#{writer}, category=#{category}, updateDate= now() where bno = #{bno}
+</update>
+
+<!-- 검색에의한 목록과 데이터 개수 처리를 위한 sql태그 -->
+<sql id="criteria">
+	<trim prefix="where (" suffix=")" prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'A'.toString()">
+							title like concat('%',#{keyword},'%') OR content like concat('%',#{keyword},'%')
+						</when>
+						<when test="type == 'M'.toString()">
+							category='music' AND (title like concat('%',#{keyword},'%') OR content like concat('%',#{keyword},'%'))
+						</when>
+						<when test="type == 'B'.toString()">
+							category='book' AND (title like concat('%',#{keyword},'%') OR content like concat('%',#{keyword},'%'))
+						</when>
+						<when test="type == 'R'.toString()">
+							category='art' AND (title like concat('%',#{keyword},'%') OR content like concat('%',#{keyword},'%'))
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+</sql>
+
+<!--  페이징 처리를 위한 쿼리 -->
+<select id="getListWithPaging" resultType="org.moym.domain.BoardVO">
+
+	<!-- MySQL-->
+	select * from (
+                select bno, title, content, writer, category, regdate, updatedate, replycnt, pageinfo, viewcnt  
+                from tbl_cafe 
+                <if test="keyword != null">
+                    <include refid="criteria"></include>
+                </if>
+                ) as T1 order by bno desc
+        limit #{skip},#{amount}
+        
+	
+</select>
+
+<select id="getTotalCount" resultType="int">
+	select count(*) from tbl_cafe 
+	<if test="keyword != null">
+         <include refid="criteria"></include>
+    </if>  
+	
+</select>
+
+ 
+<update id="updateReplyCnt">
+	update tbl_cafe set replycnt = replycnt + #{amount} where bno = #{bno}
+</update>
+
+<update id="updateViewCnt">
+	update tbl_cafe set viewcnt = viewcnt + 1 where bno = #{bno}
+</update>
+
+
+<!--
+<update id="updateReplyCnt">
+	update tbl_cafe set replycnt = (select count(rno) from tbl_cafe_reply where tbl_cafe_reply.bno = tbl_cafe.bno);
+</update>
+ -->
+
+
+
+
+
+
+
+</mapper>

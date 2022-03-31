@@ -1,0 +1,59 @@
+/*======================================
+    Our Achievement CSS
+========================================*/
+
+.our-achievement {
+    background-image: url('https://via.placeholder.com/1920x1360');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    padding-top: 70px;
+    padding: 90px 0 120px 0;
+
+    &.style3 {
+        padding-top: 200px;
+        position: relative;
+
+        &::after {
+            position: absolute;
+            content: "";
+            left: 0;
+            top: 0;
+            height: 100px;
+            width: 100%;
+            background-image: url('../images/hero/shape2.svg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 2;
+        }
+    }
+
+    &.overlay::before {
+        background-color: $theme-color;
+        opacity: 0.92;
+    }
+
+    .single-achievement {
+        margin-top: 30px;
+        text-align: center;
+        padding: 0;
+
+        h3 {
+            font-size: 35px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 15px;
+            color: $white;
+        }
+
+        h4 {
+            font-weight: 700;
+            font-size: 20px;
+            display: block;
+            margin-top: 15px;
+            color: $white;
+        }
+    }
+}

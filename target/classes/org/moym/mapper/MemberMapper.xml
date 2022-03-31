@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.moym.mapper.MemberMapper">
+
+	<resultMap type="org.moym.domain.MemberVO" id="memberMap">
+		<id property="userid" column="userid"/>
+		<result property="userid" column="userid"/>
+		<result property="userpw" column="userpw"/>
+		<result property="userName" column="username"/>
+		<result property="email" column="email"/>
+		<result property="job" column="job"/>
+		<result property="enabled" column="enabled"/>
+		<result property="regDate" column="regdate"/>
+		<result property="updateDate" column="updatedate"/>
+		<collection property="authList" resultMap="authMap">
+		</collection>
+	</resultMap>
+	
+	<resultMap type="org.moym.domain.AuthVO" id="authMap">
+		<result property="userid" column="userid"/>
+		<result property="auth" column="auth"/>
+		<result property="job" column="job"/>
+	</resultMap>
+
+
+<select id="read" resultMap="memberMap">
+SELECT
+ mem.userid, userpw, username, email, mem.job, enabled, regdate, updatedate, auth
+ FROM
+ tbl_member mem LEFT OUTER JOIN tbl_member_auth auth on mem.userid = auth.userid
+ WHERE mem.userid = #{userid}
+</select>
+
+<insert id="insert">
+	insert into tbl_member (userid,userpw,username,email,job) values (#{userid}, #{userpw}, #{userName}, #{email},#{job})
+</insert>
+
+<!-- ID duplication check -->
+<select id="idCheck" resultType="int">
+	select count(*) from tbl_member where userid = #{userid}
+</select>
+
+<!-- Email duplication check -->
+<select id="emailChk" resultType="int">
+	select count(*) from tbl_member where email = #{email}
+</select>
+
+ 
+<select id="findIdByEmail" resultType="String">
+	select userid from tbl_member where email = #{email}
+</select>
+
+<update id="changePW">
+	update tbl_member set userpw = #{userpw} where email = #{email}
+</update>
+
+<delete id="deleteMem">
+	delete from tbl_member where userid = #{userid}
+</delete>
+
+<delete id="deleteMemAuth">
+	delete from tbl_member_auth where userid = #{userid}
+</delete>
+
+<select id="getTotalMyPost" resultType="int">
+	SELECT (
+	 (SELECT count(*) FROM tbl_storage WHERE writer=#{writer}) +
+	 (SELECT count(*) FROM tbl_studio WHERE writer=#{writer}) +
+	 (SELECT count(*) FROM tbl_gallery WHERE writer=#{writer}) +
+	 (SELECT count(*) FROM tbl_notice WHERE writer=#{writer}) +
+	 (SELECT count(*) FROM tbl_cafe WHERE writer=#{writer})
+	 )
+</select>
+
+<select id="myPostGetList" resultType="org.moym.domain.BoardVO">
+	SELECT bno,writer,title,regdate,pageinfo,replycnt,viewcnt FROM tbl_storage WHERE writer=#{writer} UNION 
+	SELECT bno,writer,title,regdate,pageinfo,replycnt,viewcnt FROM tbl_studio WHERE writer=#{writer} UNION 
+	SELECT bno,writer,title,regdate,pageinfo,replycnt,viewcnt FROM tbl_gallery WHERE writer=#{writer} UNION 
+	SELECT bno,writer,title,regdate,pageinfo,replycnt,viewcnt FROM tbl_notice WHERE writer=#{writer} UNION 
+	SELECT bno,writer,title,regdate,pageinfo,replycnt,viewcnt FROM tbl_cafe WHERE writer=#{writer} ORDER BY regdate DESC 
+	limit #{skip},#{amount}
+</select>
+
+<select id="recentPostHome" resultType="org.moym.domain.BoardVO">
+	SELECT bno,writer,title,regdate,pageinfo,filecallpath FROM tbl_storage UNION 
+	SELECT bno,writer,title,regdate,pageinfo,filecallpath FROM tbl_studio UNION 
+	SELECT bno,writer,title,regdate,pageinfo,filecallpath FROM tbl_gallery ORDER BY regdate DESC limit 0,6
+</select>
+
+<select id="recentNotice" resultType="org.moym.domain.BoardVO">
+	SELECT * FROM tbl_notice 
+	ORDER BY regdate DESC limit 0,5
+</select>
+
+
+
+
+</mapper>

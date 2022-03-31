@@ -1,0 +1,27 @@
+/*======================================
+    Photo Gallery CSS
+========================================*/
+.photo-gallery {
+    img {
+        Width: 100%;
+        cursor: pointer;
+    }
+
+    .images {
+        display: grid;
+        Grid-template-columns: repeat(8, 1fr);
+        Grid-gap: 1em 1em;
+        Margin-top: 1em;
+    }
+
+    @keyframes fadeIn {
+        to {
+            Opacity: 1;
+        }
+    }
+
+    .fade-in {
+        animation: fadeIn 0.5s ease-in 1 forwards;
+    }
+
+}

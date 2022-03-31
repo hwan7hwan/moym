@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.moym.mapper.ManagerMapper">
+
+<select id="read" resultType="org.moym.domain.QnaVO">
+	select * from tbl_qna where qno = #{qno}
+</select>
+
+<insert id="insertQnA">
+	insert into tbl_qna (emailq,contentq) values (#{emailq}, #{contentq})
+</insert>
+
+<update id="answerQnA">
+	update tbl_qna set answerer=#{answerer},answer=#{answer},chk='Y',answerdate=now() where qno=${qno}
+</update>
+
+<sql id="criteria">
+	<trim prefix="where (" suffix=")" prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'A'.toString()">
+							contentq like concat('%',#{keyword},'%') OR emailq like concat('%',#{keyword},'%')
+						</when>
+						<when test="type == 'Y'.toString()">
+							chk='Y' AND (contentq like concat('%',#{keyword},'%') OR emailq like concat('%',#{keyword},'%'))
+						</when>
+						<when test="type == 'N'.toString()">
+							chk='N' AND (contentq like concat('%',#{keyword},'%') OR emailq like concat('%',#{keyword},'%'))
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+</sql>
+
+<select id="readQnA" resultType="org.moym.domain.QnaVO">
+
+	<!-- MySQL-->
+	select * from (
+                select qno, emailq, contentq, answerer, answer, chk, regdate, answerdate  
+                from tbl_qna 
+                <if test="keyword != null">
+                    <include refid="criteria"></include>
+                </if>
+                ) as T1 order by qno desc
+        limit #{skip},#{amount}
+        
+	
+</select>
+
+<select id="getTotalCntQnA" resultType="int">
+	select count(*) from tbl_qna 
+	<if test="keyword != null">
+         <include refid="criteria"></include>
+    </if>
+</select>
+
+
+<delete id="deleteQnA">
+	delete from tbl_qna where qno = #{qno}
+</delete>
+
+</mapper>

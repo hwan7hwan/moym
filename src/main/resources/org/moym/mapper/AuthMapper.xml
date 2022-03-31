@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.moym.mapper.AuthMapper">
+
+	<resultMap type="org.moym.domain.MemberVO" id="memberMap">
+		<id property="userid" column="userid"/>
+		<result property="userid" column="userid"/>
+		<result property="userpw" column="userpw"/>
+		<result property="userName" column="username"/>
+		<result property="email" column="email"/>
+		<result property="job" column="job"/>
+		<result property="enabled" column="enabled"/>
+		<result property="regDate" column="regdate"/>
+		<result property="updateDate" column="updatedate"/>
+		<collection property="authList" resultMap="authMap">
+		</collection>
+	</resultMap>
+	
+	<resultMap type="org.moym.domain.AuthVO" id="authMap">
+		<result property="userid" column="userid"/>
+		<result property="auth" column="auth"/>
+		<result property="job" column="job"/>
+	</resultMap>
+
+
+<insert id="insert">
+	insert into tbl_member_auth (userid,auth,job) values (#{userid}, #{auth}, #{job})
+</insert>
+
+</mapper>

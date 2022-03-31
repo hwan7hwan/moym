@@ -1,0 +1,662 @@
+/*======================================
+	01. Start Header CSS
+========================================*/
+.header {
+    &.style2.navbar-area {
+        position: absolute;
+        width: 100%;
+        transition: all 0.4s ease;
+
+        &.sticky {
+            position: fixed;
+            z-index: 99;
+            background-color: #fff;
+            box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease-out 0s;
+            top: 0;
+        }
+
+    }
+
+    &.style3.navbar-area {
+        position: absolute;
+        width: 100%;
+
+        &.sticky {
+            position: fixed;
+            z-index: 99;
+            background-color: #fff;
+            box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease-out 0s;
+            top: 0;
+        }
+
+        .header-social {
+            display: inline-block;
+            margin-left: 100px;
+            float: right;
+
+            ul {
+                li {
+                    display: inline-block;
+                    margin-right: 20px;
+
+                    &:last-child {
+                        margin: 0;
+                    }
+
+                    a {
+                        color: $black;
+
+                        &:hover {
+                            color: $theme-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+/*===== NAVBAR =====*/
+.navbar-area {
+    width: 100%;
+    z-index: 99;
+    transition: all 0.3s ease-out 0s;
+    background: #fff;
+}
+
+.sticky {
+    position: fixed;
+    z-index: 99;
+    background-color: #fff;
+    box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease-out 0s;
+    top: 0;
+}
+
+.navbar-expand-lg .navbar-nav {
+    margin-left: auto;
+}
+
+.sticky .navbar .navbar-nav .nav-item a {
+    color: #333;
+}
+
+.header .navbar .navbar-nav .nav-item a.active {
+    color: $theme-color;
+}
+
+.sticky .navbar .navbar-nav .nav-item a.active {
+    color: $theme-color;
+}
+
+.header .navbar .navbar-nav .nav-item .sub-menu a.active {
+    color: $white;
+}
+
+.sticky .navbar .navbar-nav .nav-item .sub-menu a.active {
+    color: $white;
+}
+
+.sticky .navbar .mobile-menu-btn .toggler-icon {
+    background: #333;
+}
+
+/* Topbar */
+.header .toolbar-area {
+    padding: 12px 0;
+    background: $theme-color;
+}
+
+.header .toolbar-area .toolbar-social {
+    margin-top: 8px;
+
+    ul {
+        li {
+            display: inline-block;
+            margin-right: 15px;
+
+            .title {
+                display: inline-block;
+                font-weight: 600;
+                font-size: 13px;
+                color: $white;
+            }
+
+            &:last-child {
+                margin: 0;
+            }
+
+            a {
+                color: $white;
+                font-size: 13px;
+                transition: all 0.2s ease;
+
+                &:hover {
+                    transform: translateY(-2px);
+                }
+            }
+        }
+    }
+}
+
+.header .toolbar-login {
+    float: right;
+
+    a {
+        display: inline-block;
+        margin-right: 20px;
+        color: $white;
+        font-weight: 500;
+        font-size: 14px;
+        font-size: 13px;
+
+        &:hover {
+            opacity: 0.7;
+        }
+
+        &:last-child {
+            margin: 0;
+        }
+    }
+
+    .btn {
+        color: $theme-color;
+        padding: 6px 20px;
+        font-size: 13px;
+        background-color: $white;
+        border-radius: 4px;
+        border: 1px solid transparent;
+        font-weight: 600;
+
+        &:before {
+            display: none;
+        }
+
+        &:hover {
+            color: $white;
+            opacity: 1;
+            background-color: transparent;
+            border-color: $white;
+        }
+    }
+}
+
+/*===== NAVBAR =====*/
+.navbar-area {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+    transition: all 0.3s ease-out 0s;
+    padding: 0;
+}
+
+.navbar-area.header-3 {
+    background: #fff;
+}
+
+.navbar-area.sticky {
+    position: fixed;
+    z-index: 99;
+    background: $theme-color;
+    box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease-out 0s;
+    background: #fff;
+    padding: 0px 0;
+}
+
+.navbar-area.sticky .toolbar-area {
+    display: none;
+}
+
+.header {
+    background-color: #fff;
+}
+
+.navbar {
+    padding: 0;
+    position: relative;
+    transition: all 0.3s ease-out 0s;
+}
+
+.navbar-brand {
+    padding: 0;
+}
+
+.navbar-brand img {
+    width: 170px;
+}
+
+.mobile-menu-btn {
+    padding: 0px;
+}
+
+.mobile-menu-btn:focus {
+    text-decoration: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.mobile-menu-btn .toggler-icon {
+    width: 30px;
+    height: 2px;
+    background-color: #222;
+    display: block;
+    margin: 5px 0;
+    position: relative;
+    transition: all 0.3s ease-out 0s;
+}
+
+.mobile-menu-btn.active .toggler-icon:nth-of-type(1) {
+    transform: rotate(45deg);
+    top: 7px;
+}
+
+.mobile-menu-btn.active .toggler-icon:nth-of-type(2) {
+    opacity: 0;
+}
+
+.mobile-menu-btn.active .toggler-icon:nth-of-type(3) {
+    transform: rotate(135deg);
+    top: -7px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .navbar-collapse {
+        position: absolute;
+        top: 165% !important;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        z-index: 9;
+        box-shadow: 0px 15px 20px 0px rgba(0, 0, 0, 0.1);
+        padding: 10px 20px;
+        max-height: 350px;
+        overflow-y: scroll;
+    }
+}
+
+@media (max-width: 767px) {
+    .navbar-collapse {
+        position: absolute;
+        top: 165% !important;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        z-index: 9;
+        box-shadow: 0px 15px 20px 0px rgba(0, 0, 0, 0.1);
+        padding: 10px 20px;
+        max-height: 350px;
+        overflow-y: scroll;
+    }
+}
+
+.navbar-expand-lg .navbar-nav {
+    margin-left: auto !important;
+}
+
+.navbar-nav .nav-item {
+    z-index: 1;
+    position: relative;
+    margin-left: 40px;
+
+    &:first-child {
+        margin: 0;
+    }
+}
+
+.navbar-nav .nav-item:hover a {
+    color: $theme-color;
+}
+
+
+.navbar-nav .nav-item a {
+    font-size: 16px;
+    color: #051441;
+    transition: all 0.3s ease-out 0s;
+    position: relative;
+    padding: 35px 0;
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    transition: all 0.3s ease-out 0s;
+    position: relative;
+    text-transform: capitalize;
+
+    &::after {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -7px;
+        z-index: -1;
+        opacity: 0;
+        border-radius: 10px;
+        -webkit-transition: all 0.3s ease-out 0s;
+        transition: all 0.3s ease-out 0s;
+        z-index: 5;
+        border: 8px solid #0EDC8D;
+        border-radius: 0;
+        border-bottom-color: transparent !important;
+        width: auto !important;
+        left: 50% !important;
+        margin-left: -8px;
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+
+    &.active:before {
+        opacity: 1;
+        visibility: visible;
+        top: -4px;
+    }
+}
+
+.navbar-nav .nav-item:hover a:before {
+    opacity: 1;
+    visibility: visible;
+    top: -4px;
+}
+
+
+.navbar-nav .nav-item a.active {
+    color: $theme-color;
+}
+
+.navbar-nav .nav-item a.dd-menu {}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .navbar-nav .nav-item a.dd-menu {
+        padding-right: 30px;
+    }
+}
+
+.navbar-nav .nav-item a.dd-menu::after {
+    content: "\ea58";
+    font: normal normal normal 1em/1 "LineIcons";
+    position: absolute;
+    right: 17px;
+    font-size: 10px;
+    top: 50%;
+    margin-left: 5px;
+    margin-top: 0px;
+    transition: all 0.3s ease-out 0s;
+    height: 10px;
+    margin-top: -5px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .navbar-nav .nav-item a.dd-menu::after {
+        right: 13px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
+    .navbar-nav .nav-item a.dd-menu::after {
+        top: 16px;
+        right: 0;
+        transform: rotate(180deg);
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
+    .navbar-nav .nav-item a.collapsed::after {
+        transform: rotate(0deg);
+    }
+}
+
+.navbar-nav .nav-item:hover>.sub-menu {
+    top: 100%;
+    opacity: 1;
+    visibility: visible;
+}
+
+.navbar-nav .nav-item:hover>.sub-menu .sub-menu {
+    left: 100%;
+    top: 0;
+}
+
+.navbar-nav .nav-item .sub-menu {
+    min-width: 220px;
+    background-color: #fff;
+    box-shadow: 0px 13px 20px rgba(153, 153, 153, 0.06);
+    position: absolute;
+    top: 100% !important;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-out 0s;
+    padding: 10px 0;
+    border-bottom: 4px solid $theme-color;
+    border-top: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.navbar-nav .nav-item .sub-menu .nav-item a {
+    padding: 12px 25px;
+    color: $black;
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: capitalize;
+
+    &:before {
+        display: none;
+    }
+}
+
+.navbar-nav .nav-item .sub-menu.left-menu {
+    left: -100%;
+}
+
+.navbar-nav .nav-item .sub-menu.collapse:not(.show) {
+    display: block;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
+    .navbar-nav .nav-item .sub-menu.collapse:not(.show) {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
+    .navbar-nav .nav-item {
+        margin: 0;
+
+        a {
+            &::before {
+                display: none;
+            }
+        }
+    }
+
+
+    .navbar-nav .nav-item .sub-menu {
+        position: static;
+        width: 100%;
+        opacity: 1;
+        visibility: visible;
+        box-shadow: none;
+        padding: 0;
+        border: none;
+        margin-left: 15px;
+        margin-right: 15px;
+
+        .nav-item a {
+            padding: 12px 12px;
+
+            &:hover {
+                background: $white !important;
+                color: $theme-color !important;
+            }
+        }
+    }
+
+    .navbar-nav .nav-item .sub-menu::after {
+        display: none;
+    }
+}
+
+.navbar-nav .nav-item .sub-menu>li {
+    display: block;
+    margin-left: 0;
+}
+
+.navbar-nav .nav-item .sub-menu>li:last-child {
+    border: none;
+}
+
+.navbar-nav .nav-item .sub-menu>li.active>a,
+.navbar-nav .nav-item .sub-menu>li:hover>a {
+    color: $white !important;
+    background-color: $theme-color !important;
+}
+
+.navbar-nav .nav-item .sub-menu>li>a {
+    font-weight: 400;
+    display: block;
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #222;
+    border-top: 1px solid rgba(0, 0, 0, 0.03);
+    font-weight: 400;
+}
+
+.navbar-nav .nav-item .sub-menu>li:first-child a {
+    border: none;
+}
+
+.navbar-nav .nav-item .sub-menu>li>a:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: $theme-color;
+}
+
+
+@media only screen and (min-width: 992px) and (max-width:1199px) {
+    .navbar-nav .nav-item a {
+        padding: 32px 0 !important;
+    }
+
+    .header .search-form .form-control {
+        width: 130px !important;
+    }
+
+    .header .search-form {
+        margin-left: 30px !important;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
+    .navbar-nav .nav-item a {
+        color: #051441;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+
+        &::after {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    .nav-inner {
+        padding: 25px 0;
+    }
+
+    .navbar-nav .nav-item .sub-menu>li.active {
+        background: $white !important;
+        color: $theme-color !important;
+    }
+
+    .header.style3.navbar-area .header-social {
+        display: none;
+    }
+
+    .navbar-nav .nav-item .sub-menu>li.active>a,
+    .navbar-nav .nav-item .sub-menu>li:hover>a {
+        color: $theme-color !important;
+        background-color: #fff !important;
+    }
+}
+
+/* Search Form */
+.header .search-form {
+    margin-left: 60px;
+
+    .form-control {
+        display: block;
+        width: 175px;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: .25rem;
+        -webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+        transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+        height: 45px;
+        border-radius: 5px 0 0 5px;
+        border: 1px solid #eee;
+        font-size: 13px;
+        color: #333;
+        padding: 0px 20px;
+        margin: 0 !important;
+        border-right: none;
+
+        &:focus {
+            text-decoration: none;
+            outline: none;
+            box-shadow: none;
+        }
+    }
+
+    .btn-outline-success {
+        height: 45px;
+        width: 50px;
+        border: 1px solid #eee;
+        border-radius: 0 5px 5px 0;
+        color: #081828;
+        text-align: center;
+        line-height: 42px;
+        padding: 0;
+        -webkit-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+
+        &:focus {
+            text-decoration: none;
+            outline: none;
+            box-shadow: none;
+        }
+
+        &:hover {
+            background: $theme-color;
+            border-color: transparent;
+            color: $white;
+        }
+    }
+}
+
+
+/*======================================
+     End Header CSS
+  ========================================*/

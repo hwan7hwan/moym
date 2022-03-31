@@ -1,0 +1,100 @@
+/*======================================
+    About Us CSS
+========================================*/
+.about-us {
+    background-color: $gray;
+    position: relative;
+
+    .round-shape {
+        position: absolute;
+        top: -100px;
+        left: -100px;
+        height: 200px;
+        width: 200px;
+    }
+
+    .about-left {
+        padding-right: 100px;
+
+        p {
+            margin-bottom: 25px;
+        }
+
+        .about-title {
+            padding: 0;
+            margin-bottom: 40px;
+
+            span {
+                position: relative;
+                text-transform: capitalize;
+                padding: 8px 20px;
+                border-radius: 30px 30px 30px 0;
+                font-weight: 600;
+                color: $white;
+                background-color: $theme-color;
+                font-size: 13px;
+                margin-bottom: 8px;
+            }
+
+            h2 {
+                font-size: 35px;
+                margin-bottom: 20px;
+                padding-bottom: 20px;
+                line-height: 40px;
+                text-transform: capitalize;
+                position: relative;
+                font-weight: 700;
+            }
+        }
+
+        .button {
+            margin-top: 40px;
+
+            .btn {
+                margin-right: 10px;
+
+                i {
+                    display: inline-block;
+                    margin-left: 8px;
+                    font-size: 12px;
+                }
+
+                &:last-child {
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    .about-right {
+        position: relative;
+
+        img {
+            width: 100%;
+            border-radius: 0;
+            overflow: hidden;
+        }
+    }
+}
+
+.our-achievement {
+    background-color: $theme-color;
+    background-image: url('../images/hero/hero1-pattern.png');
+
+    .single-achievement {
+        margin-top: 70px;
+        text-align: center;
+        padding: 0px 50px;
+
+        h3 {
+            font-size: 40px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 15px;
+        }
+    }
+}
